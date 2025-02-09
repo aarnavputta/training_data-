@@ -1,0 +1,117 @@
+/* Ensure all sections and divs span the full width */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%; /* Ensure full width coverage */
+  background-color: #001f3f; /* Dark blue background */
+  display: flex;
+  flex-direction: column;
+}
+
+div, section, footer, aside, main {
+  width: 100%; /* Ensure all containers span the full width */
+  background-color: #001f3f !important; /* Force dark blue */
+}
+
+
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Ensure it aligns correctly */
+  min-height: 100vh; /* Cover full viewport height */
+  width: 100%; /* Cover full viewport width */
+  background-color: #001f3f; /* Match body background */
+  padding: 2rem 0; /* Add padding only at the top and bottom */
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 items per row */
+  gap: 20px; /* Space between items */
+  justify-content: center; /* Center the grid horizontally */
+  align-items: start; /* Align items to the top */
+  width: 100%; /* Full width of the container */
+  max-width: 800px; /* Adjust the max width for better alignment */
+  margin: 2rem auto; /* Center the grid vertically with spacing */
+}
+
+
+
+
+
+
+
+
+
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Penn State Logo Styling */
+.penn-state-logo {
+  position: absolute;
+  top: 1rem; /* Adjust the distance from the top */
+  right: 1rem; /* Adjust the distance from the right */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 100px; /* Limit the maximum width */
+  max-height: 100px; /* Limit the maximum height */
+  cursor: pointer;
+  transition: transform 300ms ease-in-out; /* Smooth hover effect */
+}
+
+.penn-state-logo:hover {
+  transform: scale(1.1); /* Slight zoom-in on hover */
+}
+
+
+.footer {
+  background-color: #001f3f !important; /* Match background color */
+  padding: 1rem;
+  text-align: center;
+  width: 100%; /* Full width of the viewport */
+  position: fixed; /* Pin it to the bottom of the viewport */
+  bottom: 0; /* Align it at the very bottom */
+}
+
+html, body {
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+
+
