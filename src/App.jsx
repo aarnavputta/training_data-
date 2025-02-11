@@ -22,6 +22,7 @@ const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [selectedInterests, setSelectedInterests] = useState([]);
   const [showClubs, setShowClubs] = useState(false);
+  const [userID, setUserID] = useState("");
 
   const toggleInterest = (interest) => {
     setSelectedInterests((prev) => {
@@ -43,7 +44,7 @@ const App = () => {
   };
 
   if (!loggedIn) {
-    return <Login setLoggedIn={setLoggedIn} />;
+    return <Login setUserID={setUserID} setLoggedIn={setLoggedIn} />;
   }
 
   return (
@@ -87,7 +88,7 @@ const App = () => {
           </div>
         </>
       ) : (
-        <Clubs selectedInterests={selectedInterests} />
+        <Clubs userID={userID} selectedInterests={selectedInterests} />
       )}
     </div>
   );
