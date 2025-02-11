@@ -74,7 +74,8 @@ const Clubs = ({ userID, selectedInterests }) => {
       clubsNo: clubsData["no"].join(",")
     }).catch((err) => {
       console.error("error while sending data");
-    })
+    });
+    setFinished(true);
   }
 
   const moveToNextClub = () => {
@@ -83,6 +84,7 @@ const Clubs = ({ userID, selectedInterests }) => {
     } else {
       // alert("You have reached the end of the list!");
       setFinished(true);
+      sendData();
       // TODO: call method to push all data to database
     }
   };
