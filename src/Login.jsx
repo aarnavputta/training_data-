@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import "./Login.css";
 
-const Login = ({ setLoggedIn }) => {
+const Login = ({ setUserID, setLoggedIn }) => {
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email.endsWith("@psu.edu") && consent) {
+      setUserID(email);
       setLoggedIn(true);
     } else {
       alert("Please enter a valid PSU email and consent to notifications.");
