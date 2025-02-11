@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Papa from "papaparse";
+import ProgressBar from "react-bootstrap/ProgressBar";
+import "./Clubs.css";
 
 const Clubs = ({ selectedInterests }) => {
   const [clubs, setClubs] = useState([]);
   const [filteredClubs, setFilteredClubs] = useState([]);
+  const [currentClubIndex, setCurrentClubIndex] = useState(0);
 
   useEffect(() => {
     // Load the CSV file
@@ -26,17 +29,60 @@ const Clubs = ({ selectedInterests }) => {
     setFilteredClubs(filtered);
   }, [clubs, selectedInterests]);
 
+  const handleYes = () => {
+    moveToNextClub();
+  };
+
+  const handleNo = () => {
+    moveToNextClub();
+  };
+
+  const moveToNextClub = () => {
+    if (currentClubIndex < filteredClubs.length - 1) {
+      setCurrentClubIndex(currentClubIndex + 1);
+    } else {
+      alert("You have reached the end of the list!");
+    }
+  };
+
+  const currentClub = filteredClubs[currentClubIndex];
+
+  // Calculate progress
+  const progress =
+    filteredClubs.length > 0
+      ? Math.round(((currentClubIndex + 1) / filteredClubs.length) * 100)
+      : 0;
+
   return (
-    <div style={styles.container}>
-      <h1>Matching Clubs</h1>
+    <div className="clubs-container">
+      {/* Progress Bar */}
+      <div className="progress-container">
+        <ProgressBar
+          animated
+          now={progress}
+          label={`${progress}%`}
+        />
+      </div>
+      <h1 className="clubs-header">Matching Clubs</h1>
       {filteredClubs.length > 0 ? (
-        <ul style={styles.list}>
-          {filteredClubs.map((club, index) => (
-            <li key={index} style={styles.listItem}>
-              <h3>{club.Name}</h3>
-            </li>
-          ))}
-        </ul>
+        currentClub ? (
+          <div className="club-box">
+            <h3 className="club-name">{currentClub.Name}</h3>
+            <p className="club-tags">
+              <b>Tags:</b> {currentClub["Tagged Interests"]}
+            </p>
+            <div className="club-buttons">
+              <button className="no-button" onClick={handleNo}>
+                No
+              </button>
+              <button className="yes-button" onClick={handleYes}>
+                Yes
+              </button>
+            </div>
+          </div>
+        ) : (
+          <p>Loading...</p>
+        )
       ) : (
         <p>No clubs match your interests. Try selecting different interests!</p>
       )}
@@ -44,24 +90,9 @@ const Clubs = ({ selectedInterests }) => {
   );
 };
 
-const styles = {
-  container: {
-    padding: "20px",
-    fontFamily: "Arial, sans-serif",
-    textAlign: "center",
-  },
-  list: {
-    listStyle: "none",
-    padding: 0,
-  },
-  listItem: {
-    marginBottom: "15px",
-    border: "1px solid #ccc",
-    borderRadius: "10px",
-    padding: "10px",
-    textAlign: "left",
-  },
-};
-
 export default Clubs;
+
+
+
+
 

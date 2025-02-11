@@ -1,0 +1,191 @@
+/* Clubs Container */
+.clubs-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #001f3f; /* Dark blue background */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Progress Bar Container */
+.progress-container {
+    background-color: #ffffff; /* White background */
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a slight shadow */
+    width: 80%; /* Adjust the width as needed */
+    margin: 20px auto; /* Center the container */
+    z-index: 2;
+}
+
+  
+  /* Progress Bar */
+  .progress-bar {
+    height: 20px; /* Adjust bar height */
+    background-color: #28a745 !important; /* Light green progress color */
+  }
+  
+  /* Clubs Header */
+  .clubs-header {
+    color: #ffffff;
+    margin-bottom: 20px;
+  }
+  
+  /* Club Box */
+  .club-box {
+    background-color: #ffffff; /* Fully white box */
+    color: #000000; /* Black text */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    max-width: 400px;
+    width: 80%;
+    z-index: 1;
+  }
+  
+  /* Club Name */
+  .club-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Club Tags */
+  .club-tags {
+    font-size: 14px;
+    color: #333333;
+    margin-bottom: 20px;
+  }
+  
+  /* Club Buttons */
+  .club-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  /* Yes Button */
+  .yes-button {
+    background-color: #28a745;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  /* No Button */
+  .no-button {
+    background-color: #dc3545;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  
+  /* Header */
+  .clubs-header {
+    color: #ffffff;
+    margin-bottom: 20px;
+  }
+  
+  
+  
+  /* Club container (white box) */
+  .club-box {
+    background-color: #ffffff !important; /* Fully white box */
+    color: #000000; /* Black text */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for visibility */
+    padding: 20px;
+    text-align: center;
+    max-width: 400px;
+    width: 80%;
+    z-index: 1; /* Ensure it appears above background */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Proper alignment */
+  }
+  
+  /* Club name */
+  .club-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Club tags */
+  .club-tags {
+    font-size: 14px;
+    color: #333333;
+    margin-bottom: 20px;
+  }
+  
+  /* Buttons container */
+/* Buttons container */
+.club-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Align buttons vertically */
+    width: 100%; /* Full width of the container */
+    background-color: #ffffff !important; /* Force white background */
+    padding: 15px 0; /* Add padding around the buttons */
+    margin-top: 20px; /* Space above buttons */
+    border-radius: 0 0 10px 10px; /* Match parent container's bottom corners */
+    border-top: 1px solid #ccc; /* Optional: Add a top border for separation */
+    position: relative; /* Ensure no overlap */
+    z-index: 1; /* Ensure it appears above the background */
+  }
+  
+  
+  /* Yes button */
+  .yes-button {
+    background-color: #28a745; /* Green */
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.2s ease; /* Smooth hover effect */
+  }
+  
+  .yes-button:hover {
+    transform: scale(1.1); /* Slight zoom-in */
+  }
+  
+  /* No button */
+  .no-button {
+    background-color: #dc3545; /* Red */
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.2s ease; /* Smooth hover effect */
+  }
+  
+  .no-button:hover {
+    transform: scale(1.1); /* Slight zoom-in */
+  }
+  
+  /* Fix for any inherited background color issues */
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #001f3f !important; /* Ensure full dark blue background */
+  }
+  
