@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import Login from "./Login";
 import Clubs from "./Clubs";
 import './App.css';
-
 
 const interestsList = [
   "Advocacy", "Anime & Comics", "Art", "Asian Student Life", "Atheist & Secular Clubs", "Basketball", 
@@ -18,8 +18,8 @@ const interestsList = [
   "Writing", "Yoga"
 ];
 
-
 const App = () => {
+  const [loggedIn, setLoggedIn] = useState(false);
   const [selectedInterests, setSelectedInterests] = useState([]);
   const [showClubs, setShowClubs] = useState(false);
 
@@ -42,8 +42,17 @@ const App = () => {
     setShowClubs(true); // Navigate to the Clubs component
   };
 
+  if (!loggedIn) {
+    return <Login setLoggedIn={setLoggedIn} />;
+  }
+
   return (
     <div style={styles.container}>
+      <img
+        src="/penn_state.png"
+        alt="Penn State Logo"
+        className="penn-state-logo"
+      />
       {!showClubs ? (
         <>
           <h1>Pick Your Interests</h1>

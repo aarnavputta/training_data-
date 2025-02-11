@@ -1,0 +1,100 @@
+/* Login Page Styling */
+.login-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #001f3f; /* Dark blue background */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .login-header {
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-size: 2rem;
+  }
+  
+  .login-subtext {
+    color: #ffffff;
+    margin-bottom: 30px;
+  }
+  
+  .login-form {
+    background-color: #001f3f; /* Match dark blue background */
+    border: none;
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .login-label {
+    color: #ffffff;
+    margin-bottom: 10px;
+    display: block;
+    font-size: 1rem;
+  }
+  
+  .input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .email-input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    flex: 1;
+    color: #333333; /* Black text */
+    background-color: #ffffff; /* White background for input box */
+  }
+  
+  .email-input::placeholder {
+    color: #aaaaaa; /* Light gray for placeholder text */
+  }
+  
+  .email-suffix {
+    background-color: #f5f5f5; /* Light gray suffix background */
+    color: #333333; /* Black text for suffix */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+  }
+  
+  .consent-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .consent-checkbox {
+    margin-right: 10px;
+  }
+  
+  .consent-label {
+    color: #ffffff; /* White text for consent label */
+    font-size: 0.9rem;
+  }
+  
+  .login-button {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%; /* Make button span full width */
+  }
+  
+  .login-button:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  

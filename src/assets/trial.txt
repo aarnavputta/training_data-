@@ -1,0 +1,228 @@
+import React, { useState } from "react";
+import "./App.css";
+import Clubs from "./Clubs";
+
+const interestsList = [
+  "Advocacy", "Anime & Comics", "Art", "Asian Student Life", "Atheist & Secular Clubs", "Basketball", 
+  "Black Student Life", "Board Games & Tabletop", "Books", "Broadcasting", "Business", "Christian Organizations", 
+  "Climbing", "Coffee", "Community", "Content Creation", "DIY", "Dance", "Diversity", "Engineering", 
+  "Entrepreneurship", "European Student Life", "Fashion", "Film", "Film Production", "Finance", "Fishing & Hunting", 
+  "Fitness", "Food", "Football", "Fundraising", "Gaming", "Gardening", "General Student Organizations", "Heritage", 
+  "Hindu Organizations", "Human Rights", "Indigenous Student Life", "International", "Jewish Organizations", 
+  "Journalism", "LGBTQ+", "Latino", "Law & Pre-Law", "Leadership", "Marketing", "Martial Arts", "Mathematics", 
+  "Medicine & Health", "Middle Eastern Student Life", "Music", "Muslim Organizations", "Outdoors", "Philanthropy", 
+  "Photography", "Podcasting", "Political Organizations", "Psychology", "Public Relations", "Public Speaking", 
+  "Religious", "Running", "Science", "Science Fiction & Fantasy", "Service", "Soccer", "Social Club", "Social Media", 
+  "Special Interest", "Sustainability", "Technology", "Theater", "Travel", "Water Sports", "Women’s Empowerment", 
+  "Writing", "Yoga"
+];
+
+/*
+const data = {
+  user_id: {
+    interests: [interest1, interest2, ...],
+    clubs_shown: [club1, club2, ...],
+    clubs_chosen: [club2, club4, ...]
+  }
+}
+*/
+
+function App() {
+  const [selectedInterests, setSelectedInterests] = useState([]);
+
+  const toggleInterest = (interest) => {
+    setSelectedInterests((prev) =>
+      prev.includes(interest)
+        ? prev.filter((i) => i !== interest) // Remove if already selected
+        : [...prev, interest] // Add if not selected
+    );
+  };
+
+  return (
+    <div style={styles.container}>
+      {/* Add the Penn State Logo */}
+      <img
+        src="./penn_state.png"
+        alt="Penn State Logo"
+        className="penn-state-logo"
+      />
+      <h1>Pick Your Interests</h1>
+      <p>Select up to 5 interests</p>
+      <div style={styles.grid}>
+        {interestsList.map((interest) => (
+          <button
+            key={interest}
+            onClick={() => toggleInterest(interest)}
+            style={{
+              ...styles.interestButton,
+              backgroundColor: selectedInterests.includes(interest)
+                ? "#FF6F61" // Selected button color
+                : "#f5f5f5", // Unselected button color
+              color: selectedInterests.includes(interest)
+                ? "#ffffff" // Selected text color
+                : "#333333" // Unselected text color
+            }}
+          >
+            {interest}
+          </button>
+        ))}
+      </div>
+      <div style={styles.footer}>
+        <button
+          style={styles.continueButton}
+          disabled={selectedInterests.length === 0}
+          onClick={() => alert(`You selected: ${selectedInterests.join(", ")}`)}
+        >
+          Continue ({selectedInterests.length}/5)
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// Basic styles
+const styles = {
+  container: {
+    fontFamily: "Arial, sans-serif",
+    textAlign: "center",
+    padding: "20px",
+  },
+  grid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
+    gap: "10px",
+    justifyContent: "center",
+    marginTop: "20px",
+  },
+  interestButton: {
+    border: "1px solid #ccc",
+    borderRadius: "20px",
+    padding: "10px 15px",
+    cursor: "pointer",
+    fontSize: "14px",
+    transition: "all 0.3s ease",
+  },
+  footer: {
+    marginTop: "20px",
+  },
+  continueButton: {
+    backgroundColor: "#FF6F61",
+    color: "#ffffff",
+    border: "none",
+    borderRadius: "20px",
+    padding: "10px 20px",
+    fontSize: "16px",
+    cursor: "pointer",
+    transition: "all 0.3s ease",
+    opacity: 1,
+  },
+};
+
+export default App;
+
+
+clubs code:
+import React, { useEffect, useState } from "react";
+import Papa from "papaparse";
+import ProgressBar from "react-bootstrap/ProgressBar";
+import "./Clubs.css";
+
+const Clubs = ({ selectedInterests }) => {
+  const [clubs, setClubs] = useState([]);
+  const [filteredClubs, setFilteredClubs] = useState([]);
+  const [currentClubIndex, setCurrentClubIndex] = useState(0);
+
+  useEffect(() => {
+    // Load the CSV file
+    Papa.parse("/clubs.csv", {
+      download: true,
+      header: true,
+      complete: (result) => {
+        setClubs(result.data);
+      },
+    });
+  }, []);
+
+  useEffect(() => {
+    // Filter clubs based on selected interests
+    const filtered = clubs.filter((club) =>
+      selectedInterests.some((interest) =>
+        club["Tagged Interests"]?.toLowerCase().includes(interest.toLowerCase())
+      )
+    );
+    setFilteredClubs(filtered);
+  }, [clubs, selectedInterests]);
+
+  const handleYes = () => {
+    moveToNextClub();
+  };
+
+  const handleNo = () => {
+    moveToNextClub();
+  };
+
+  const moveToNextClub = () => {
+    if (currentClubIndex < filteredClubs.length - 1) {
+      setCurrentClubIndex(currentClubIndex + 1);
+    } else {
+      alert("You have reached the end of the list!");
+    }
+  };
+
+  const currentClub = filteredClubs[currentClubIndex];
+
+  // Calculate progress
+  const progress =
+    filteredClubs.length > 0
+      ? Math.round(((currentClubIndex + 1) / filteredClubs.length) * 100)
+      : 0;
+
+  return (
+    <div className="clubs-container">
+      {/* Progress Bar */}
+      <ProgressBar
+        animated
+        now={progress}
+        label={`${progress}%`}
+        variant="success"
+        className="progress-bar"
+      />
+      <h1 className="clubs-header">Matching Clubs</h1>
+      {filteredClubs.length > 0 ? (
+        currentClub ? (
+          <div className="club-box">
+            <h3 className="club-name">{currentClub.Name}</h3>
+            <p className="club-tags">
+              <b>Tags:</b> {currentClub["Tagged Interests"]}
+            </p>
+            <div
+              className="club-buttons"
+              style={{
+                backgroundColor: "#ffffff", // White background for buttons section
+                padding: "10px 0", // Add padding
+                borderTop: "1px solid #ccc", // Add a top border
+                display: "flex", // Arrange buttons in a row
+                justifyContent: "space-between", // Spread buttons evenly
+              }}
+            >
+              <button className="no-button" onClick={handleNo}>
+                No
+              </button>
+              <button className="yes-button" onClick={handleYes}>
+                Yes
+              </button>
+            </div>
+          </div>
+        ) : (
+          <p>Loading...</p>
+        )
+      ) : (
+        <p>No clubs match your interests. Try selecting different interests!</p>
+      )}
+    </div>
+  );
+};
+
+export default Clubs;
+
+
