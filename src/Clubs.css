@@ -188,4 +188,21 @@
     width: 100%;
     background-color: #001f3f !important; /* Ensure full dark blue background */
   }
+
+  .go-back-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+  }
+  
+  .go-back-button:hover {
+    background-color: #0056b3;
+  }
+  
   
