@@ -4,6 +4,8 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import "./Clubs.css";
 import { db } from "./firebase";
 import { collection, doc, getDocs, setDoc } from "firebase/firestore"
+import { useNavigate } from "react-router-dom";
+
 
 const clubsData = {
   "yes": [],
@@ -54,7 +56,9 @@ const Clubs = ({ userID, selectedInterests }) => {
         club["Tagged Interests"]?.toLowerCase().includes(interest.toLowerCase())
       )
     );
-    setFilteredClubs(filtered);
+    const shuffledClubs = filtered.sort(() => Math.random() - 0.5);
+
+    setFilteredClubs(shuffledClubs);
   }, [clubs, selectedInterests]);
 
   const handleYes = () => {
@@ -97,13 +101,17 @@ const Clubs = ({ userID, selectedInterests }) => {
   
   if (finished) {
     return (
-      <div>
-        <h1 className="clubs-header">
-          You're done
-        </h1>
+      <div className="clubs-container">
+        <h1 className="clubs-header">You're Done</h1>
+        <p>Thank you for selecting your interests.</p>
+        <button className="go-back-button" onClick={() => window.location.href = "/"}>
+  Go Back Home
+</button>
+
       </div>
-    )
+    );
   }
+  
 
   return (
     <div className="clubs-container">
